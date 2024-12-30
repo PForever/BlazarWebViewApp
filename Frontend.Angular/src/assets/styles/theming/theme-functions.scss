@@ -1,0 +1,14 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+@use 'colors' as colors;
+@use 'theme-variables' as theme-variables;
+
+@mixin apply($theme) {
+  @include mat.all-component-themes($theme);
+}
+
+@mixin create-variables($theme, $custom-colors) {
+  @include theme-variables.set-variables($theme);
+  $background-border-line: map.get($custom-colors, background-border-line);
+  --background-border-line: #{$background-border-line};
+}

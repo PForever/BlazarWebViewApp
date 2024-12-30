@@ -1,0 +1,128 @@
+@use 'theme-functions' as theme-functions;
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+$md-primary: (
+  50 : #faebe7,
+  100 : #f3cdc3,
+  200 : #ebac9b,
+  300 : #e38b72,
+  400 : #dd7254,
+  500 : #d75936,
+  600 : #d35130,
+  700 : #cd4829,
+  800 : #c73e22,
+  900 : #be2e16,
+  A100 : #fff1f0,
+  A200 : #ffc4bd,
+  A400 : #ff978a,
+  A700 : #ff8170,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-accent: (
+  50 : #e2eaf2,
+  100 : #b6cbdf,
+  200 : #85a9ca,
+  300 : #5487b4,
+  400 : #306da4,
+  500 : #0b5394,
+  600 : #0a4c8c,
+  700 : #084281,
+  800 : #063977,
+  900 : #032965,
+  A100 : #95b6ff,
+  A200 : #6294ff,
+  A400 : #2f71ff,
+  A700 : #155fff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$md-warn: (
+  50 : #eee4e9,
+  100 : #d5bbc8,
+  200 : #ba8da3,
+  300 : #9e5f7e,
+  400 : #893d63,
+  500 : #741b47,
+  600 : #6c1840,
+  700 : #611437,
+  800 : #57102f,
+  900 : #440820,
+  A100 : #ff7aa7,
+  A200 : #ff4786,
+  A400 : #ff1464,
+  A700 : #fa0055,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+
+$density: 0;
+$primary: mat.m2-define-palette($md-primary);
+$accent: mat.m2-define-palette($md-accent, A200, A100, A700);
+$warn: mat.m2-define-palette($md-warn);
+$theme: mat.m2-define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+  ),
+  density: $density,
+));
+
+$custom-colors: (
+  background-border-line: rgb(235, 235, 235),
+);
+
+@mixin fix-mat() {
+  .mat-mdc-menu-item {
+    --mat-menu-item-icon-color: rgb(0 0 0 / 52%);
+  }
+}

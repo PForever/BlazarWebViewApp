@@ -1,0 +1,166 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+@use 'colors' as colors;
+
+@mixin set-variables($theme) {
+
+  $primary-palette: map.get($theme, primary);
+
+  --primary-50: #{map.get($primary-palette, 50)};
+  --primary-100: #{map.get($primary-palette, 100)};
+  --primary-200: #{map.get($primary-palette, 200)};
+  --primary-300: #{map.get($primary-palette, 300)};
+  --primary-400: #{map.get($primary-palette, 400)};
+  --primary-500: #{map.get($primary-palette, 500)};
+  --primary-600: #{map.get($primary-palette, 600)};
+  --primary-700: #{map.get($primary-palette, 700)};
+  --primary-800: #{map.get($primary-palette, 800)};
+  --primary-900: #{map.get($primary-palette, 900)};
+  --primary-A100: #{map.get($primary-palette, A100)};
+  --primary-A200: #{map.get($primary-palette, A200)};
+  --primary-A400: #{map.get($primary-palette, A400)};
+  --primary-A700: #{map.get($primary-palette, A700)};
+  --primary-default: #{map.get($primary-palette, default)};
+  --primary-lighter: #{map.get($primary-palette, lighter)};
+  --primary-darker: #{map.get($primary-palette, darker)};
+  --primary-text: #{map.get($primary-palette, text)};
+  --primary-default-contrast: #{map.get($primary-palette, default-contrast)};
+  --primary-lighter-contrast: #{map.get($primary-palette, lighter-contrast)};
+  --primary-darker-contrast: #{map.get($primary-palette, darker-contrast)};
+  --primary-50-contrast: #{map.get($primary-palette, "50-contrast")};
+  --primary-100-contrast: #{map.get($primary-palette, "100-contrast")};
+  --primary-200-contrast: #{map.get($primary-palette, "200-contrast")};
+  --primary-300-contrast: #{map.get($primary-palette, "300-contrast")};
+  --primary-400-contrast: #{map.get($primary-palette, "400-contrast")};
+  --primary-500-contrast: #{map.get($primary-palette, "500-contrast")};
+  --primary-600-contrast: #{map.get($primary-palette, "600-contrast")};
+  --primary-700-contrast: #{map.get($primary-palette, "700-contrast")};
+  --primary-800-contrast: #{map.get($primary-palette, "800-contrast")};
+  --primary-900-contrast: #{map.get($primary-palette, "900-contrast")};
+  --primary-A100-contrast: #{map.get($primary-palette, "A100-contrast")};
+  --primary-A200-contrast: #{map.get($primary-palette, "A200-contrast")};
+  --primary-A400-contrast: #{map.get($primary-palette, "A400-contrast")};
+  --primary-A700-contrast: #{map.get($primary-palette, "A700-contrast")};
+
+  $accent-palette: map.get($theme, accent);
+
+  --accent-50: #{map.get($accent-palette, 50)};
+  --accent-100: #{map.get($accent-palette, 100)};
+  --accent-200: #{map.get($accent-palette, 200)};
+  --accent-300: #{map.get($accent-palette, 300)};
+  --accent-400: #{map.get($accent-palette, 400)};
+  --accent-500: #{map.get($accent-palette, 500)};
+  --accent-600: #{map.get($accent-palette, 600)};
+  --accent-700: #{map.get($accent-palette, 700)};
+  --accent-800: #{map.get($accent-palette, 800)};
+  --accent-900: #{map.get($accent-palette, 900)};
+  --accent-A100: #{map.get($accent-palette, A100)};
+  --accent-A200: #{map.get($accent-palette, A200)};
+  --accent-A400: #{map.get($accent-palette, A400)};
+  --accent-A700: #{map.get($accent-palette, A700)};
+  --accent-default: #{map.get($accent-palette, default)};
+  --accent-lighter: #{map.get($accent-palette, lighter)};
+  --accent-darker: #{map.get($accent-palette, darker)};
+  --accent-text: #{map.get($accent-palette, text)};
+  --accent-default-contrast: #{map.get($accent-palette, default-contrast)};
+  --accent-lighter-contrast: #{map.get($accent-palette, lighter-contrast)};
+  --accent-darker-contrast: #{map.get($accent-palette, darker-contrast)};
+  --accent-50-contrast: #{map.get($accent-palette, "50-contrast")};
+  --accent-100-contrast: #{map.get($accent-palette, "100-contrast")};
+  --accent-200-contrast: #{map.get($accent-palette, "200-contrast")};
+  --accent-300-contrast: #{map.get($accent-palette, "300-contrast")};
+  --accent-400-contrast: #{map.get($accent-palette, "400-contrast")};
+  --accent-500-contrast: #{map.get($accent-palette, "500-contrast")};
+  --accent-600-contrast: #{map.get($accent-palette, "600-contrast")};
+  --accent-700-contrast: #{map.get($accent-palette, "700-contrast")};
+  --accent-800-contrast: #{map.get($accent-palette, "800-contrast")};
+  --accent-900-contrast: #{map.get($accent-palette, "900-contrast")};
+  --accent-A100-contrast: #{map.get($accent-palette, "A100-contrast")};
+  --accent-A200-contrast: #{map.get($accent-palette, "A200-contrast")};
+  --accent-A400-contrast: #{map.get($accent-palette, "A400-contrast")};
+  --accent-A700-contrast: #{map.get($accent-palette, "A700-contrast")};
+
+  $warn-palette: map.get($theme, warn);
+
+  --warn-50: #{map.get($warn-palette, 50)};
+  --warn-100: #{map.get($warn-palette, 100)};
+  --warn-200: #{map.get($warn-palette, 200)};
+  --warn-300: #{map.get($warn-palette, 300)};
+  --warn-400: #{map.get($warn-palette, 400)};
+  --warn-500: #{map.get($warn-palette, 500)};
+  --warn-600: #{map.get($warn-palette, 600)};
+  --warn-700: #{map.get($warn-palette, 700)};
+  --warn-800: #{map.get($warn-palette, 800)};
+  --warn-900: #{map.get($warn-palette, 900)};
+  --warn-A100: #{map.get($warn-palette, A100)};
+  --warn-A200: #{map.get($warn-palette, A200)};
+  --warn-A400: #{map.get($warn-palette, A400)};
+  --warn-A700: #{map.get($warn-palette, A700)};
+  --warn-default: #{map.get($warn-palette, default)};
+  --warn-lighter: #{map.get($warn-palette, lighter)};
+  --warn-darker: #{map.get($warn-palette, darker)};
+  --warn-text: #{map.get($warn-palette, text)};
+  --warn-default-contrast: #{map.get($warn-palette, default-contrast)};
+  --warn-lighter-contrast: #{map.get($warn-palette, lighter-contrast)};
+  --warn-darker-contrast: #{map.get($warn-palette, darker-contrast)};
+  --warn-50-contrast: #{map.get($warn-palette, "50-contrast")};
+  --warn-100-contrast: #{map.get($warn-palette, "100-contrast")};
+  --warn-200-contrast: #{map.get($warn-palette, "200-contrast")};
+  --warn-300-contrast: #{map.get($warn-palette, "300-contrast")};
+  --warn-400-contrast: #{map.get($warn-palette, "400-contrast")};
+  --warn-500-contrast: #{map.get($warn-palette, "500-contrast")};
+  --warn-600-contrast: #{map.get($warn-palette, "600-contrast")};
+  --warn-700-contrast: #{map.get($warn-palette, "700-contrast")};
+  --warn-800-contrast: #{map.get($warn-palette, "800-contrast")};
+  --warn-900-contrast: #{map.get($warn-palette, "900-contrast")};
+  --warn-A100-contrast: #{map.get($warn-palette, "A100-contrast")};
+  --warn-A200-contrast: #{map.get($warn-palette, "A200-contrast")};
+  --warn-A400-contrast: #{map.get($warn-palette, "A400-contrast")};
+  --warn-A700-contrast: #{map.get($warn-palette, "A700-contrast")};
+
+  $background-palette: map.get($theme, background);
+
+  --background-status-bar: #{map.get($background-palette, status-bar)};
+  --background-app-bar: #{map.get($background-palette, app-bar)};
+  --background-background: #{map.get($background-palette, background)};
+  --background-hover: #{map.get($background-palette, hover)};
+  --background-card: #{map.get($background-palette, card)};
+  --background-dialog: #{map.get($background-palette, dialog)};
+  --background-disabled-button: #{map.get($background-palette, disabled-button)};
+  --background-raised-button: #{map.get($background-palette, raised-button)};
+  --background-focused-button: #{map.get($background-palette, focused-button)};
+  --background-selected-button: #{map.get($background-palette, selected-button)};
+  --background-selected-disabled-button: #{map.get($background-palette, selected-disabled-button)};
+  --background-disabled-button-toggle: #{map.get($background-palette, disabled-button-toggle)};
+  --background-unselected-chip: #{map.get($background-palette, unselected-chip)};
+  --background-disabled-list-option: #{map.get($background-palette, disabled-list-option)};
+  --background-tooltip: #{map.get($background-palette, tooltip)};
+
+  $foreground-palette: map.get($theme, foreground);
+
+  --foreground-base: #{map.get($foreground-palette, base)};
+  --foreground-divider: #{map.get($foreground-palette, divider)};
+  --foreground-dividers: #{map.get($foreground-palette, dividers)};
+  --foreground-disabled: #{map.get($foreground-palette, disabled)};
+  --foreground-disabled-button: #{map.get($foreground-palette, disabled-button)};
+  --foreground-disabled-text: #{map.get($foreground-palette, disabled-text)};
+  --foreground-elevation: #{map.get($foreground-palette, elevation)};
+  --foreground-hint-text: #{map.get($foreground-palette, hint-text)};
+  --foreground-secondary-text: #{map.get($foreground-palette, secondary-text)};
+  --foreground-icon: #{map.get($foreground-palette, icon)};
+  --foreground-icons: #{map.get($foreground-palette, icons)};
+  --foreground-text: #{map.get($foreground-palette, text)};
+  --foreground-slider-min: #{map.get($foreground-palette, slider-min)};
+  --foreground-slider-off: #{map.get($foreground-palette, slider-off)};
+  --foreground-slider-off-active: #{map.get($foreground-palette, slider-off-active)};
+
+  $is-dark: map.get($theme, is-dark);
+  @include colors.set-colors($is-dark);
+
+  --is-dark: #{$is-dark};
+  @if ($is-dark) {
+    --color-scheme: dark;
+  } @else {
+    --color-scheme: light;
+  }
+}

@@ -1,0 +1,6 @@
+@mixin set-colors($is-dark) {
+  @if ($is-dark) {
+    --primary-background: rgb(177, 2, 0);
+  } @else {
+  }
+}

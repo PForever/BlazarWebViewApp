@@ -1,0 +1,67 @@
+@use '@angular/material' as mat;
+@use 'assets/styles/theming/dark' as themes-config-dark;
+@use 'assets/styles/theming/light' as themes-config-light;
+@use 'assets/styles/theming/typography' as typography;
+@use 'assets/styles/theming/theme-functions' as theme-functions;
+
+@import "assets/styles/buttons.css";
+
+$theme-ignore-duplication-warnings: true;
+mat.$theme-ignore-duplication-warnings: true;
+
+@include mat.elevation-classes();
+@include mat.app-background();
+
+$typography: typography.get-typography();
+@include mat.typography-hierarchy($typography);
+@include mat.all-component-typographies($typography);
+
+@include mat.elevation-classes();
+@include mat.app-background();
+
+* {
+    box-sizing: border-box;
+}
+body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html, body { height: 100%; }
+body { margin: 0; font-family: Arial, sans-serif; color: var(--foreground-icon); }
+app-root {
+  height: 100%;
+}
+
+router-outlet ~ * {
+  width: 100%;
+  height: 100%;
+}
+
+
+@include theme-functions.apply(themes-config-dark.$theme);
+
+:root {
+  @include theme-functions.create-variables(themes-config-dark.$theme, themes-config-dark.$custom-colors);
+}
+
+html {
+  &.light {
+    @include theme-functions.create-variables(themes-config-light.$theme, themes-config-light.$custom-colors);
+    @include themes-config-light.fix-mat();
+    @include theme-functions.apply(themes-config-light.$theme);
+  }
+  &.dark {
+    @include themes-config-dark.fix-mat();
+  }
+  &.system {
+    @media (prefers-color-scheme: light) {
+      @include theme-functions.create-variables(themes-config-light.$theme, themes-config-light.$custom-colors);
+      @include themes-config-light.fix-mat();
+      @include theme-functions.apply(themes-config-light.$theme);
+    }
+    @media (prefers-color-scheme: dark) {
+      @include themes-config-dark.fix-mat();
+    }
+  }
+}
+* {
+  transition: background-color 0.5s ease;
+}

@@ -1,0 +1,4 @@
+<svg width="75" height="50" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="37.5" cy="25" rx="35" ry="15" fill="none" stroke="#FF5722" stroke-width="2"/>
+  <text x="37.5" y="27" font-size="20" text-anchor="middle" alignment-baseline="middle" fill="#FF5722" font-family="Verdana" style="text-shadow: 0.5px 0.5px 1px #000000;">TEST</text>
+</svg>

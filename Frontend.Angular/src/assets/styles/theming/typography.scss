@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+@use "../fonts";
+
+@function get-typography() {
+  $typography: mat.m2-define-typography-config(
+    $font-family: Arial,
+    $body-1: mat.m2-define-typography-level(
+      $font-family: Arial,
+      $font-weight: 400,
+      $font-size: 1rem,
+      $line-height: 1,
+      $letter-spacing: normal
+    ),
+    $headline-5: mat.m2-define-typography-level(
+      $font-family: Arial,
+      $font-weight: 500,
+      $font-size: 2em,
+      $line-height: 2em,
+      $letter-spacing: normal,
+    ),
+  );
+  @return $typography;
+}

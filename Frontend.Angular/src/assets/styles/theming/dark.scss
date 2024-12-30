@@ -1,0 +1,123 @@
+@use 'theme-functions' as theme-functions;
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+$md-primary: (
+  50 : #ffe9e3,
+  100 : #ffc8b9,
+  200 : #ffa48b,
+  300 : #ff805d,
+  400 : #ff643a,
+  500 : #ff4917,
+  600 : #ff4214,
+  700 : #ff3911,
+  800 : #ff310d,
+  900 : #ff2107,
+  A100 : #ffffff,
+  A200 : #fff5f4,
+  A400 : #ffc5c1,
+  A700 : #ffaea7,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$md-accent: (
+  50 : #eef5fb,
+  100 : #d4e5f5,
+  200 : #b7d4ee,
+  300 : #9ac2e7,
+  400 : #85b5e1,
+  500 : #6fa8dc,
+  600 : #67a0d8,
+  700 : #5c97d3,
+  800 : #528dce,
+  900 : #407dc5,
+  A100 : #ffffff,
+  A200 : #e3efff,
+  A400 : #b0d3ff,
+  A700 : #96c4ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$md-warn: (
+  50 : #fbeded,
+  100 : #f6d1d1,
+  200 : #f0b3b3,
+  300 : #e99494,
+  400 : #e57d7d,
+  500 : #e06666,
+  600 : #dc5e5e,
+  700 : #d85353,
+  800 : #d34949,
+  900 : #cb3838,
+  A100 : #ffffff,
+  A200 : #ffe2e2,
+  A400 : #ffafaf,
+  A700 : #ff9696,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$density: -1;
+
+$primary: mat.m2-define-palette($md-primary);
+$accent: mat.m2-define-palette($md-accent, A200, A100, A700);
+$warn: mat.m2-define-palette($md-warn);
+$theme: mat.m2-define-dark-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+  ),
+  density: $density,
+));
+
+$custom-colors: (
+  background-border-line: rgb(192, 192, 192),
+);
+
+@mixin fix-mat() {
+}
