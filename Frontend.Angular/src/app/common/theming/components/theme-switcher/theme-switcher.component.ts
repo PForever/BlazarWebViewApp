@@ -11,7 +11,7 @@ import {ThemeSwitcher} from "@common/theming/services/ThemeSwitcher";
   selector: 'app-theme-switcher',
   template: `
     <div class="container">
-      <button color="primary" mat-mini-fab [matMenuTriggerFor]="themeMenu">
+      <button color="basic" mat-mini-fab [matMenuTriggerFor]="themeMenu">
         <mat-icon>{{ themeIcon() }}</mat-icon>
       </button>
       <mat-menu #themeMenu="matMenu">

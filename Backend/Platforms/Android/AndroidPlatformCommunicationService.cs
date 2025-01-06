@@ -1,12 +1,14 @@
 ﻿using Android.Content;
 using Android.Provider;
+using Backend;
+using Backend.Services;
 using Contacts = Microsoft.Maui.ApplicationModel.Communication.Contacts;
 
 [assembly: Dependency(typeof(ContactService))]
 
-namespace ContactsBase;
+namespace Backend;
 
-public class AndroidPlatformService : IPlatformService
+public class AndroidPlatformCommunicationService : IPlatformCommunicationService
 {
 	public async Task<string[]> GetContactsAsync()
 	{

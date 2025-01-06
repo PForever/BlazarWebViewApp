@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace ContactsBase;
+namespace Backend;
 public class Program
 {
 	// This is the main entry point of the application.

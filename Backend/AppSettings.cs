@@ -1,12 +1,19 @@
-﻿namespace ContactsBase;
+﻿namespace Backend;
 
 public static class AppSettings
 {
-	private static IServiceProvider? _services;
+	internal static IServiceProvider? Services;
 
-	public static void Inizialize(IServiceProvider services)
+	public static void Initialize(IServiceProvider services)
 	{
-		_services = services;
+		Services = services;
 	}
-	public static T Resolve<T>() where T : notnull => _services.GetRequiredService<T>();
+	public static T Resolve<T>() where T : notnull => (Services ?? throw new InvalidOperationException()).GetRequiredService<T>();
+	public static void AddErrorHandler(Func<Exception, Task> handler) => ErrorHandler = handler;
+
+	public static Func<Exception, Task> ErrorHandler { get; private set; } = e =>
+	{
+		Console.WriteLine(e);
+		return Task.CompletedTask;
+	};
 }

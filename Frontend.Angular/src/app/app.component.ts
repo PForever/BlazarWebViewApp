@@ -1,14 +1,16 @@
 import {Component, inject} from '@angular/core';
 import {PermissionService} from '@common/permission-system/UserService';
-import { TopBarComponent } from './layout/top-bar/top-bar.component';
-import { SideMenuComponent } from './layout/side-menu/side-menu.component';
-import { MainComponent } from './layout/main/main.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { AsyncPipe } from '@angular/common';
+import {TopBarComponent} from './layout/top-bar/top-bar.component';
+import {SideMenuComponent} from './layout/side-menu/side-menu.component';
+import {MainComponent} from './layout/main/main.component';
+import {FooterComponent} from './layout/footer/footer.component';
+import {AsyncPipe} from '@angular/common';
+import {EventMessageQueueComponent} from "@app/layout/event-message-queue/event-message-queue.component";
+import {SystemLogInterceptor} from "@common/help/services/system-log-intersepter.service";
 
 @Component({
-    selector: 'app-root',
-    template: `
+  selector: 'app-root',
+  template: `
     @if (getPermission() | async; as permission) {
       <section class="layout">
         <header class="header">
@@ -25,9 +27,9 @@ import { AsyncPipe } from '@angular/common';
         </footer>
       </section>
     }
-
+    <app-event-message-queue/>
   `,
-    styles: `
+  styles: `
     :host {
       --header-offset: 4em;
     }
@@ -66,10 +68,13 @@ import { AsyncPipe } from '@angular/common';
       grid-area: foot;
     }
   `,
-    imports: [TopBarComponent, SideMenuComponent, MainComponent, FooterComponent, AsyncPipe]
+  imports: [TopBarComponent, SideMenuComponent, MainComponent, FooterComponent, AsyncPipe, EventMessageQueueComponent]
 })
 export class AppComponent {
+
   public constructor() {
+    const logInterceptor = inject(SystemLogInterceptor);
+    logInterceptor.init();
     //to fix lazy build additional css for routes in ssr
   }
 

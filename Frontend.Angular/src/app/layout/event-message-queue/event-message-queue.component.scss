@@ -1,0 +1,70 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+::ng-deep.mat-mdc-snack-bar-container {
+  &.info-panel {
+
+    --mdc-snackbar-container-color: var(--info-backgraound);
+    --mdc-snackbar-supporting-text-color: var(--info-text);
+    --mat-snack-bar-button-color: var(--info-button-text);
+
+    & .mat-mdc-snack-bar-action {
+      background-color: var(--info-button);
+    }
+  }
+
+  &.error-panel {
+    --mdc-snackbar-container-color: var(--error-backgraound);
+    --mdc-snackbar-supporting-text-color: var(--error-text);
+    --mat-snack-bar-button-color: var(--error-button-text);
+
+    & .mat-mdc-snack-bar-action {
+      background-color: var(--error-button);
+    }
+  }
+
+  &.trace-panel {
+    & .mat-mdc-snack-bar-action {
+      background-color: var(--trace-button);
+    }
+  }
+}
+
+//.info-panel {
+//  @include mat.snack-bar-overrides((
+//    container-color: var(--accent-default),
+//    supporting-text-color: var(--accent-lighter),
+//    button-color: var(--accent-darker)
+//  ));
+//}
+//
+//.error-panel {
+//  @include mat.snack-bar-overrides((
+//    container-color: var(--warn-default),
+//    supporting-text-color: var(--warn-lighter),
+//    button-color: var(--warn-darker)
+//  ));
+//}
+
+//.mat-mdc-snack-bar-container {
+//  &.info-panel {
+//
+//    $container: mat.m2-get-color-from-palette($palette, 'default');
+//    $button: mat.m2-get-color-from-palette($palette, 'lighter');
+//    $text: mat.m2-get-color-from-palette($palette, 'darker');
+//
+//    --mdc-snackbar-container-color: #{$container};
+//    --mat-mdc-snack-bar-button-color: #{$button};
+//    --mdc-snackbar-supporting-text-color: #{$text};
+//  }
+//  &.error-panel {
+//    $container: mat.m2-get-color-from-palette($palette, 'default');
+//    $button: mat.m2-get-color-from-palette($palette, 'lighter');
+//    $text: mat.m2-get-color-from-palette($palette, 'darker');
+//
+//    --mdc-snackbar-container-color: #{$container};
+//    --mat-mdc-snack-bar-button-color: #{$button};
+//    --mdc-snackbar-supporting-text-color: #{$text};
+//  }
+//}
+

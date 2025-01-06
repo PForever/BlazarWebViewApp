@@ -5,3 +5,13 @@ password,Password,Password,Пароль,Mot de passe
 signIn,Sign in,Accedi,Вход,Connectez
 login,Login,Login,Вход,Login
 logs,Logs,Logs,Логи,Logs
+date,Date,Data,Дата,Date
+clean,Clean,Cancella,Очистить,Nettoyer
+exit,Exit,Esci,Выход,Quitter
+messageHistory,Message History,Storico Messaggi,История сообщений,Historique des messages
+messageHistoryIsEmpty,Message history is empty,Storico messaggi è vuoto,История сообщений пуста,Historique des messages est vide
+dismiss,Dismiss,Annulla,Отменить,Rejeter
+sourceType,Source type,Tipologia sorgente,Тип источника,Type de source
+level,Level,Livello,Уровень,Le niveau
+message,Message,Messaggio,Сообщение,Message
+about,About,Informazioni,О программе,About

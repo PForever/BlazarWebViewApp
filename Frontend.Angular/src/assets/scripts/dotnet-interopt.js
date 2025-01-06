@@ -1,3 +1,3 @@
-export default function invokeMethodAsync(method, parameters) {
-  return DotNet.invokeMethodAsync("Backend", method, parameters);
+export default function invokeMethodAsync(method, ...parameters) {
+  return DotNet.invokeMethodAsync("Backend", method, ...parameters);
 }

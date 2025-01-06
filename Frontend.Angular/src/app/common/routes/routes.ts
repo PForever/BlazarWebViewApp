@@ -2,13 +2,13 @@ import {ActivatedRouteSnapshot, Route, Router, Routes} from '@angular/router';
 import {HomeComponent} from '@app/features/home/home.component';
 import {inject, Type} from '@angular/core';
 import {LocaleHost} from '../lang-system/LocaleHost';
-import {TextDictionaryServcie} from '../lang-system/TextDictionaryService';
 import {UserRoles} from '../permission-system/UserRoles';
 import {PermissionService} from '@common/permission-system/UserService';
 import {map} from 'rxjs';
 import {TestComponent} from '@app/test/test/test.component';
 import {LoginComponent} from '@common/permission-system/components/login/login.component';
 import {LogsComponent} from "@app/features/logs/logs.component";
+import {TextDictionaryService} from "@common/lang-system/text-dictionary.service";
 
 export const rootPath = '/'
 
@@ -36,7 +36,7 @@ export interface RouteData {
 
 export interface RouteContextDependency {
   localeHost: LocaleHost;
-  textDictionaryServcie: TextDictionaryServcie;
+  textDictionaryService: TextDictionaryService;
 }
 
 function createRouteData(requiredRole?: UserRoles, isMenuItem?: boolean): RouteData {

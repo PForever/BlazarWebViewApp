@@ -41,5 +41,5 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideRouter(rootRoute),
     provideClientHydration(withEventReplay(), withIncrementalHydration()),
-  ]
+  ],
 };

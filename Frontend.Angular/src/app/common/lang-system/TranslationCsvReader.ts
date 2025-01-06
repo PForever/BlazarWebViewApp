@@ -1,27 +1,33 @@
 import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {map, shareReplay} from "rxjs";
 import {TextDictionary} from "./TextDictionary";
 import {NgxCsvParser} from "ngx-csv-parser";
+import {toSignal} from "@angular/core/rxjs-interop";
 
 
 @Injectable({providedIn: 'root'})
 export class TranslationCsvReader {
+  private readonly httpClient = inject(HttpClient);
+  private readonly ngxCsvParser = inject(NgxCsvParser);
+
+  private readonly _file;
+  public get file() {
+    return this._file();
+  }
+
   private readonly file$;
 
-  public constructor(
-    private readonly httpClient: HttpClient,
-    private readonly ngxCsvParser: NgxCsvParser,
-  ) {
+  public constructor() {
     // this.sanitizer.bypassSecurityTrustResourceUrl(`assets/img/material/${name}_${color}_${size}dp.svg`));
     this.file$ = this.httpClient.get('assets/locale/translations.csv', {responseType: 'text'}).pipe(
       map(f => this.ngxCsvParser.csvStringToArray(f, ',') as string[][]),
       map(a => this.fillDictionaries(a[0], a.slice(1))),
-      shareReplay(1),
-    );
+      shareReplay(1));
+    this._file = toSignal(this.file$);
   }
 
-  public getFile() {
+  public getFile$() {
     return this.file$
   }
 

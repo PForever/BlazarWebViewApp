@@ -1,22 +1,17 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {LogService} from "@common/help/services/log-service";
-import {AsyncPipe} from "@angular/common";
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-logs',
   template: `
-    @for (log of logs$ | async; track $index) {
-      <span>{{ log }}</span>
-    }
   `,
   styles: `
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    AsyncPipe
-  ]
+  imports: []
 })
 export class LogsComponent {
-  private readonly logService = inject(LogService);
-  public logs$ = this.logService.log$;
 }

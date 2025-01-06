@@ -29,5 +29,5 @@ import {RouterLink} from '@angular/router';
 })
 export class HomeButtonComponent {
   private readonly localeHost = inject(LocaleHost);
-  public lang = this.localeHost.language;
+  public readonly lang = this.localeHost.language;
 }

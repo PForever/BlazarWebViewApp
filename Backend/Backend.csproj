@@ -20,6 +20,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <EnableDefaultCssItems>false</EnableDefaultCssItems>
         <Nullable>enable</Nullable>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
         <!-- Display name -->
         <ApplicationTitle>Backend</ApplicationTitle>
@@ -41,7 +43,10 @@
 	<ItemGroup>
 		<AngularFiles Include="..\Frontend.Angular\dist\**\*" />
 	</ItemGroup>
-	<Target Name="BuildAngular" BeforeTargets="Build">
+	<Target Name="BuildAngularDebug" BeforeTargets="Build" Condition="'$(Configuration)'=='Debug'">
+		<Exec Command="ng b --output-path $(MSBuildProjectDirectory)\wwwroot" WorkingDirectory="..\Frontend.Angular" />
+	</Target>
+	<Target Name="BuildAngularRelease" BeforeTargets="Build" Condition="'$(Configuration)'=='Release'">
 		<Exec Command="ng b -c production --aot --output-path $(MSBuildProjectDirectory)\wwwroot" WorkingDirectory="..\Frontend.Angular" />
 	</Target>
 
@@ -64,6 +69,11 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
@@ -73,6 +83,10 @@
 
     <ItemGroup>
       <Folder Include="wwwroot\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Database\Database.csproj" />
     </ItemGroup>
 
 </Project>

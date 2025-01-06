@@ -1,0 +1,15 @@
+C:\Projects\BlazarWebViewApp\Database\bin\Debug\net9.0\Database.deps.json
+C:\Projects\BlazarWebViewApp\Database\bin\Debug\net9.0\Database.runtimeconfig.json
+C:\Projects\BlazarWebViewApp\Database\bin\Debug\net9.0\Database.dll
+C:\Projects\BlazarWebViewApp\Database\bin\Debug\net9.0\Database.pdb
+C:\Projects\BlazarWebViewApp\Database\obj\Debug\net9.0\Database.csproj.AssemblyReference.cache
+C:\Projects\BlazarWebViewApp\Database\obj\Debug\net9.0\Database.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\BlazarWebViewApp\Database\obj\Debug\net9.0\Database.AssemblyInfoInputs.cache
+C:\Projects\BlazarWebViewApp\Database\obj\Debug\net9.0\Database.AssemblyInfo.cs
+C:\Projects\BlazarWebViewApp\Database\obj\Debug\net9.0\Database.csproj.CoreCompileInputs.cache
+C:\Projects\BlazarWebViewApp\Database\obj\Debug\net9.0\Database.sourcelink.json
+C:\Projects\BlazarWebViewApp\Database\obj\Debug\net9.0\Database.dll
+C:\Projects\BlazarWebViewApp\Database\obj\Debug\net9.0\refint\Database.dll
+C:\Projects\BlazarWebViewApp\Database\obj\Debug\net9.0\Database.pdb
+C:\Projects\BlazarWebViewApp\Database\obj\Debug\net9.0\Database.genruntimeconfig.cache
+C:\Projects\BlazarWebViewApp\Database\obj\Debug\net9.0\ref\Database.dll

@@ -1,7 +1,8 @@
 ﻿using Android.App;
 using Android.Runtime;
+using Backend;
 
-namespace ContactsBase;
+namespace Backend;
 [Application]
 public class MainApplication : MauiApplication
 {
@@ -12,7 +13,7 @@ public class MainApplication : MauiApplication
 
 	protected override MauiApp CreateMauiApp()
 	{
-		DependencyService.Register<IPlatformService, AndroidPlatformService>();
+		DependencyService.Register<IPlatformCommunicationService, AndroidPlatformCommunicationService>();
 		return MauiProgram.CreateMauiApp();
 	}
 }

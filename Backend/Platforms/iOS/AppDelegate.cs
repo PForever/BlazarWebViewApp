@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace ContactsBase;
+namespace Backend;
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate
 {

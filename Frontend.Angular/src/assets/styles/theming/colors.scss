@@ -1,6 +1,21 @@
 @mixin set-colors($is-dark) {
+  --primary-background: rgb(177, 2, 0);
+
+  --error-backgraound: rgb(229, 115, 114);
+  --error-text: rgb(245, 240, 240);
+  --error-button: rgb(236, 7, 6);
+  --error-button-text: rgb(245, 240, 240);
+
+  --info-backgraound: rgb(178, 253, 160);
+  --info-button-text: rgb(49, 49, 49);
+  --info-button: rgb(44, 243, 3);
+  --info-text: rgb(49, 49, 49);
+
+  --trace-button: #b0b0b0;
+
+  --warning-button: #f6eb06;
+
   @if ($is-dark) {
-    --primary-background: rgb(177, 2, 0);
   } @else {
   }
 }
