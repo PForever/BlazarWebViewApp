@@ -1,7 +1,10 @@
-﻿using Backend.Services;
+﻿using Backend.Dtos;
+using Backend.Services;
 using Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Storage;
 
 namespace Backend;
 public static class MauiProgram
@@ -11,7 +14,10 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts => fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular"));
+
+		builder.Services.AddSingleton(FolderPicker.Default);
 
 		builder.Services.AddMauiBlazorWebView();
 
@@ -36,6 +42,7 @@ public static class MauiProgram
 		serviceCollection.AddScoped<INodeService, NodeService>();
 		//serviceCollection.AddScoped<IReadRepository, ReadRepository>();
 		serviceCollection.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+		serviceCollection.AddScoped(typeof(IPersonRepository), typeof(PersonRepository));
 	}
 
 	private static void ApplyMigration(MauiApp app)
@@ -45,6 +52,7 @@ public static class MauiProgram
 		//TODO Do it in background
 		try
 		{
+			//dbContext.Database.EnsureCreated();
 			dbContext.Database.Migrate();
 		}
 		catch (Exception e)

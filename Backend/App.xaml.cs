@@ -1,26 +1,46 @@
 ﻿using Backend.Services;
 using Backend;
+using Backend.Dtos;
+using CommunityToolkit.Maui.Storage;
 using Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.JSInterop;
+using Shared;
+using Application = Microsoft.Maui.Controls.Application;
+using Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
 
 namespace Backend;
 
 public partial class App : Application
 {
-	public App() { InitializeComponent(); }
+	private readonly IFolderPicker _folderPicker;
+	private static MainPage? _mainPage;
+
+	public App(IFolderPicker folderPicker)
+	{
+		_folderPicker = folderPicker;
+		InitializeComponent();
+		Current?.On<Microsoft.Maui.Controls.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+	}
 
 
 	protected override Window CreateWindow(IActivationState? activationState)
 	{
-		var mainPage = new MainPage();
+		var mainPage = _mainPage = new MainPage(_folderPicker);
 		var window = new Window(mainPage);
 		AppSettings.AddErrorHandler(mainPage.InvokeJs);
 		return window;
 	}
 
 	[JSInvokable]
-	//public static string GetDeviceInfo() => AppSettings.Resolve<IDeviceInfoService>().GetDeviceInfo();
+	public static async ValueTask<string?> GetDataBasePath()
+	{
+		if (_mainPage is null) throw new NotSupportedException("MainPage must be not null"); 
+		var result = await _mainPage.PickFolderAsync();
+		return result;
+	}
+
+	[JSInvokable]
 	public static async ValueTask<string> GetDeviceInfo()
 	{
 		await AppHelper.Use<IRepository<Note>>().Do(async r =>
@@ -43,28 +63,45 @@ public partial class App : Application
 	public static Task<IReadOnlyCollection<Note>> GetNotes() =>
 		AppHelper.Use<INodeService>().Do(s => s.GetAll(default));
 
+
+	[JSInvokable]
+	public static Task DialPhoneNumber(string number) => AppHelper.Use<IContactService>().Do(s => s.DialPhoneNumber(number));
 	//Repositories
 	//Person
 	[JSInvokable]
-	public static Task<Person?> GetPerson(int id) => AppHelper.Use<IRepository<Person>>().Do(s => s.Get(id));
+	public static async Task<PersonDto?> GetPerson(int id) =>
+		await AppHelper.Use<IPersonRepository>().Do(s => s.Get(id).When(r => r?.Map()));
 
-	//[JSInvokable]
-	//public static ValueTask<object?> GetDbRow(string tableName, int id) =>
-	//	AppHelper.Do(s => s.GetRequiredService<IReadRepository>(), r => r.Get(tableName, id));
-	//[JSInvokable]
-	//public static async Task<IReadOnlyCollection<object?>> GetDbRows(string tableName)
-	//{
-	//	var list = await AppHelper.Do(s => s.GetRequiredService<IReadRepository>(), r => r.GetAll(tableName).ToListAsync());
-	//	return list;
-	//}
+	[JSInvokable]
+	public static async Task<IReadOnlyCollection<PersonDto>> GetPeople() =>
+		await AppHelper.Use<IPersonRepository>().Do(s => s.GetAll().Select(p => p.Map()).ToListAsync());
 
-	//[JSInvokable]
-	//public static Task AddDbRow<T>(T value) where T : class =>
-	//	AppHelper.Do(s => s.GetRequiredService<IRepository<T>>(), r => r.Add(value).Commit());
-	//[JSInvokable]
-	//public static Task DeleteDbRow<T>(T value) where T : class =>
-	//	AppHelper.Do(s => s.GetRequiredService<IRepository<T>>(), r => r.Delete(value).Commit());
-	//[JSInvokable]
-	//public static Task UpdateDbRow<T>(T value) where T : class =>
-	//	AppHelper.Do(s => s.GetRequiredService<IRepository<T>>(), r => r.Update(value).Commit());
+	[JSInvokable]
+	public static async Task<PersonDto> UpdatePerson(PersonDto person)
+	{
+		await AppHelper.Use<IPersonRepository>().Do(s => s.Update(person.Map()));
+		return person;
+	}
+
+	[JSInvokable]
+	public static async Task<int> AddPerson(PersonDto person)
+	{
+		var result = await AppHelper.Use<IPersonRepository>().Do(s => s.Add(person.Map()));
+		await AppHelper.Use<IContactService>().Do(s => s.AddContact(person));
+		return result;
+	}
+
+	[JSInvokable]
+	public static Task DeletePerson(int id) => AppHelper.Use<IPersonRepository>().Do(s => s.Delete(id));
+
+	//EventType
+
+	[JSInvokable]
+	public static async Task<IReadOnlyCollection<EventTypeDto>> GetEventTypes()
+	{
+		var t = await AppHelper.Use<IRepository<EventType>>().Do(s => s.GetAll().Select(p => p.Map()).ToListAsync());
+		return t;
+	}
+
+
 }

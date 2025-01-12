@@ -3,9 +3,10 @@ import {ErrorResult, Result} from '@common/help/services/Result';
 import {ErrorsComponent} from './errors/errors.component';
 import {LoadingComponent} from '../loading/loading.component';
 
-@Directive({ 
-    // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[ifSuccess]' })
+@Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[ifSuccess]'
+})
 export class IfSuccessDirective<T> {
 
   public constructor(
@@ -26,8 +27,8 @@ export class IfSuccessDirective<T> {
   public set ifSuccess(value: Result<T> | null | undefined) {
     this._data = value ?? undefined;
     if (value === null || value === undefined) { /* empty */
-    } else if (value.successeful) {
-      this.context.$implicit = this.context.ifSuccess = value.result;
+    } else if (value.successful) {
+      this.context.$implicit = this.context.ifSuccess = value.value;
     } else {
       this.errorContext.$implicit = this.errorContext.onError = value;
     }
@@ -49,7 +50,7 @@ export class IfSuccessDirective<T> {
     this.viewContainer.clear();
     if (this._data === undefined) {
       this.viewContainer.createComponent(LoadingComponent);
-    } else if (this._data.successeful) {
+    } else if (this._data.successful) {
       this.viewContainer.createEmbeddedView(this.templateRef, this.context);
     } else {
       if (this.ifSuccessOnError) {

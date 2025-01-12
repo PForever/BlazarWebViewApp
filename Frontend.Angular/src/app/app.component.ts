@@ -7,11 +7,14 @@ import {FooterComponent} from './layout/footer/footer.component';
 import {AsyncPipe} from '@angular/common';
 import {EventMessageQueueComponent} from "@app/layout/event-message-queue/event-message-queue.component";
 import {SystemLogInterceptor} from "@common/help/services/system-log-intersepter.service";
+import {KeyboardService} from "@app/keyboard.service";
+import {createSubscriptionService} from "@common/help/services/subscription.service";
 
 @Component({
   selector: 'app-root',
   template: `
     @if (getPermission() | async; as permission) {
+      <div class="test"></div>
       <section class="layout">
         <header class="header">
           <app-top-bar/>
@@ -25,14 +28,16 @@ import {SystemLogInterceptor} from "@common/help/services/system-log-intersepter
         <footer class="footer">
           <app-footer/>
         </footer>
+        <div class="keyboard"></div>
+        <app-event-message-queue/>
       </section>
     }
-    <app-event-message-queue/>
   `,
   styles: `
     :host {
       --header-offset: 4em;
     }
+
 
     .layout {
       display: grid;
@@ -43,6 +48,7 @@ import {SystemLogInterceptor} from "@common/help/services/system-log-intersepter
     "head head" var(--header-offset)
     "nav  main" 1fr
     "nav  foot" fit-content(3em)
+    "keyboard keyboard" env(keyboard-inset-height, 0px)
     / fit-content(10%) 1fr;
     }
 
@@ -72,10 +78,21 @@ import {SystemLogInterceptor} from "@common/help/services/system-log-intersepter
 })
 export class AppComponent {
 
+  private readonly keyboardService = inject(KeyboardService);
+  private readonly subscriptionService = createSubscriptionService();
+
   public constructor() {
     const logInterceptor = inject(SystemLogInterceptor);
     logInterceptor.init();
     //to fix lazy build additional css for routes in ssr
+    const keyboardListener = this.keyboardService.initializeKeyboardListener();
+    if (keyboardListener) this.subscriptionService.subscribe(keyboardListener);
+    // afterNextRender(() => {
+    //   if ("virtualKeyboard" in navigator) {
+    //     console.log((navigator as any).virtualKeyboard);
+    //     (navigator as any).virtualKeyboard.overlaysContent = true;
+    //   }
+    // });
   }
 
   private readonly permissionService: PermissionService = inject(PermissionService);

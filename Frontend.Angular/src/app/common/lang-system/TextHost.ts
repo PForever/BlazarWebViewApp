@@ -40,7 +40,7 @@ export class TextHost {
 
     if (factory === undefined) return undefined!;//runtime check
     const dictionary = this.dictionaryService.textDictionary;
-    return computed(() => dictionary ? factory(dictionary) as ReturnType<TFactoryType<TKey>['getText']> : undefined);
+    return computed(() => dictionary() ? factory(dictionary()!) as ReturnType<TFactoryType<TKey>['getText']> : undefined);
   }
 
 

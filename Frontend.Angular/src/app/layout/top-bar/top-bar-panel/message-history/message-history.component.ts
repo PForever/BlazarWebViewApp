@@ -81,7 +81,7 @@ export class MessageHistoryComponent {
   constructor() {
     const textHost = inject(TextHost);
 
-    this.text$ = textHost.getText('messageHistoryComponent');
+    this.text$ = textHost.getText('messageHistory');
   }
 
   public displayedColumns = ['date', 'level', 'sourceType', 'value'];

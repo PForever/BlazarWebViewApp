@@ -9,6 +9,8 @@ import {TestComponent} from '@app/test/test/test.component';
 import {LoginComponent} from '@common/permission-system/components/login/login.component';
 import {LogsComponent} from "@app/features/logs/logs.component";
 import {TextDictionaryService} from "@common/lang-system/text-dictionary.service";
+import {ContactsComponent} from "@app/features/contacts/contacts.component";
+import {ContactComponent} from "@app/features/contacts/children/contact/contact.component";
 
 export const rootPath = '/'
 
@@ -16,7 +18,8 @@ export const routsPaths = {
   home: '',
   login: 'login',
   test: 'test',
-  logs: 'logs'
+  logs: 'logs',
+  contacts: 'contacts'
 }
 
 export const authRoleGuard = (role: UserRoles = UserRoles.GUEST) => (route: ActivatedRouteSnapshot) => {
@@ -91,6 +94,12 @@ export interface RouteItem {
 export const routes = createRoutes([
   {component: HomeComponent, path: routsPaths.home, isMenuItem: true},
   {component: LogsComponent, path: routsPaths.logs, isMenuItem: true},
+  {
+    component: ContactsComponent, path: routsPaths.contacts, isMenuItem: true, children: [
+      {component: ContactComponent, path: 'new'},
+      {component: ContactComponent, path: ':id'},
+    ]
+  },
   {component: TestComponent, path: routsPaths.test, userRole: UserRoles.DEVELOPER},
   // {
   //   path: routsPaths.admin,

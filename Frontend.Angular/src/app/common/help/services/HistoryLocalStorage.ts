@@ -7,10 +7,12 @@ export class HistoryLocalStorage {
   private readonly key = EventMessageQueue.name;
 
   public clear(): void {
+    if (typeof window === 'undefined') return;
     localStorage.removeItem(this.key);
   }
 
   public push(message: EventMessage) {
+    if (typeof window === 'undefined') return;
     const value = localStorage.getItem(this.key);
     const history: EventMessage[] = value != null ? JSON.parse(value) as EventMessage[] : [];
     if (history == null) throw new Error(`With key "${this.key}" in local storage found unexpected structure`);
@@ -19,6 +21,7 @@ export class HistoryLocalStorage {
   }
 
   public get() {
+    if (typeof window === 'undefined') return [];
     const value = localStorage.getItem(this.key);
     const history: EventMessage[] = value != null ? JSON.parse(value) as EventMessage[] : [];
     if (history == null) throw new Error(`With key "${this.key}" in local storage found unexpected structure`);

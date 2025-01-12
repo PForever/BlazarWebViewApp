@@ -1,4 +1,27 @@
 export interface TextDictionary {
+  sex: string;
+  age: string;
+  eventTypes: string;
+  id: string;
+  created: string;
+  edit: string;
+  delete: string;
+  allTextFields: string;
+  apply: string;
+  save: string;
+  cancel: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  address: string;
+  notes: string;
+  birthDate: string;
+  add: string;
+  panel: string;
+  table: string;
+  contact: string;
+  filter: string;
+  contacts: string;
   sourceType: string;
   level: string;
   dismiss: string;

@@ -60,7 +60,7 @@ export class LoginComponent {
   private readonly router = inject(Router);
   private readonly localeHost = inject(LocaleHost);
 
-  public readonly text$ = inject(TextHost).getText('loginComponent');
+  public readonly text$ = inject(TextHost).getText('login');
   public readonly hidePassword = signal(true);
   private readonly _userService = inject(UserService);
   public readonly user: ISignInData = {

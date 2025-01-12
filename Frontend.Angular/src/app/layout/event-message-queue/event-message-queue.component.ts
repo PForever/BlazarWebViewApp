@@ -26,7 +26,7 @@ export class EventMessageQueueComponent implements OnDestroy {
 
       eventMessageQueue.massagePushed$
         .pipe(
-          switchMap(m => textHost.getText('eventMessageQueueComponent').pipe(take(1), map(t => {
+          switchMap(m => textHost.getText('eventMessageQueue').pipe(take(1), map(t => {
             return {message: m, text: t}
           }))),
           map(m => {
@@ -34,7 +34,9 @@ export class EventMessageQueueComponent implements OnDestroy {
               if (m.message.level === EventMessageLevel.Error) errorAlert(m.message.message);
               if (m.message.level === EventMessageLevel.Info) sendInfo(m.message.message);
             }
-            this.openSnackBar(m.message, m.text);
+            if (m.message.level > EventMessageLevel.Trace) {
+              this.openSnackBar(m.message, m.text);
+            }
           })).subscribe();
   }
 

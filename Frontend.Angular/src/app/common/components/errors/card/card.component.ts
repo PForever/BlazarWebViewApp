@@ -11,10 +11,10 @@ import {LoadingComponent} from '../../loading/loading.component';
     @if (templateRef(); as templateRef) {
       @if (request$() | async; as request) {
         <ng-container class="card">
-          @if (request.successeful) {
-            <ng-container [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="request.result"/>
+          @if (request.successful) {
+            <ng-container [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="request.value"/>
           }
-          @if (!request.successeful) {
+          @if (!request.successful) {
             <app-errors [result]="request"/>
           }
         </ng-container>
@@ -30,8 +30,8 @@ import {LoadingComponent} from '../../loading/loading.component';
       margin-bottom: 0.5em;
     }
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgTemplateOutlet, ErrorsComponent, LoadingComponent, AsyncPipe]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgTemplateOutlet, ErrorsComponent, LoadingComponent, AsyncPipe]
 })
 export class CardComponent {
   public readonly templateRef = contentChild(TemplateRef);

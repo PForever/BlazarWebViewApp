@@ -14,4 +14,29 @@ dismiss,Dismiss,Annulla,Отменить,Rejeter
 sourceType,Source type,Tipologia sorgente,Тип источника,Type de source
 level,Level,Livello,Уровень,Le niveau
 message,Message,Messaggio,Сообщение,Message
-about,About,Informazioni,О программе,About
+about,About,Informazioni,О программе,À propos
+contact,Contact,Contatto,Контакт,Contact
+filter,Filter,Filtro,Фильтр,Filtre
+contacts,Contacts,Contatti,Контакты,Contacts
+table,Table,Tabella,Таблица,Table
+panel,Panel,Pannello,Панель,Panel
+add,Add,Aggiungi,Добавить,Ajouter
+edit,Edit,Modifica,Редактировать,Modifier
+delete,Delete,Elimina,Удалить,Supprimer
+firstName,First name,Nome,Имя,Prénom
+lastName,Last name,Cognome,Фамилия,Nom
+phone,Phone,Telefono,Телефон,Telephone
+address,Address,Indirizzo,Адрес,Adresse
+notes,Notes,Note,Заметки,Notes
+birthDate,Birth date,Data di nascita,Дата рождения,Date de naissance
+save,Save,Salva,Сохранить,Enregistrer
+cancel,Cancel,Annulla,Отменить,Annuler
+apply,Apply,Applica,Применить,Appliquer
+id,Id,Id,Идентификатор,Identifiant
+created,Created,Creato,Создано,Creé
+edit,Edit,Modifica,Редактировать,Modifier
+delete,Delete,Elimina,Удалить,Supprimer
+allTextFields,All text fields,All text fields,Все текстовые поля,All text fields,
+eventTypes,Events,Events,События,Events
+age,Age,Edad,Возраст,Age
+sex,Sex,Genere,Пол,Sexe

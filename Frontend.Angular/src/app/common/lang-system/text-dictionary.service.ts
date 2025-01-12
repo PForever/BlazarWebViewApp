@@ -13,8 +13,5 @@ export class TextDictionaryService {
   public readonly textDictionary$ = this.localeHost.language$
     .pipe(switchMap(lang => this.translationCsvReader.getFile$().pipe(map(f => f.get(lang) ?? getMapValue(f, 'en')))));
 
-  private readonly _textDictionary = computed(() => this.translationCsvReader.file?.get(this.localeHost.language()));
-  public get textDictionary() {
-    return this._textDictionary();
-  }
+  public readonly textDictionary = computed(() => this.translationCsvReader.file?.get(this.localeHost.language()));
 }

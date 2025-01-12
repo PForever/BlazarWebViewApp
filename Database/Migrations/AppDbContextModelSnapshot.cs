@@ -17,6 +17,63 @@ namespace Database.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
 
+            modelBuilder.Entity("Database.EventType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PersonId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("EventTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Title = "Diff"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Title = "Conf"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Title = "Vol"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Title = "Pac"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Title = "Sc"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Title = "ScVol"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Title = "Deb"
+                        });
+                });
+
             modelBuilder.Entity("Database.Note", b =>
                 {
                     b.Property<int>("Id")
@@ -45,20 +102,42 @@ namespace Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Value")
-                        .IsRequired()
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Phone")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("People");
+                });
+
+            modelBuilder.Entity("Database.EventType", b =>
+                {
+                    b.HasOne("Database.Person", null)
+                        .WithMany("EventType")
+                        .HasForeignKey("PersonId");
+                });
+
+            modelBuilder.Entity("Database.Person", b =>
+                {
+                    b.Navigation("EventType");
                 });
 #pragma warning restore 612, 618
         }

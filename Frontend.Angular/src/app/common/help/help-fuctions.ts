@@ -264,3 +264,11 @@ export type PickKeyByType<Type, KeyType> = keyof { [Key in keyof Type as Type[Ke
 
 export const reload = <T>(stateSwitcher: (state: boolean) => void): UnaryFunction<Observable<T>, Observable<T>> =>
   pipe(tap(() => stateSwitcher(false)), delay(0), tap(() => stateSwitcher(true)));
+
+export function tryConvertToNumber(value: string | undefined): number | undefined {
+  const parsedValue = Number(value);
+  if (Number.isNaN(parsedValue)) {
+    return undefined;
+  }
+  return parsedValue;
+}

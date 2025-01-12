@@ -3,7 +3,7 @@ using Android.Runtime;
 using Backend;
 
 namespace Backend;
-[Application]
+[Application()]
 public class MainApplication : MauiApplication
 {
 	public MainApplication(IntPtr handle, JniHandleOwnership ownership)

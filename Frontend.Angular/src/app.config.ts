@@ -1,5 +1,5 @@
 import {ApplicationConfig, importProvidersFrom, provideExperimentalZonelessChangeDetection} from "@angular/core";
-import {provideRouter, RouterOutlet} from "@angular/router";
+import {provideRouter, RouterOutlet, withComponentInputBinding} from "@angular/router";
 import {rootRoute} from "@common/routes/root-route";
 import {
   BrowserModule,
@@ -36,10 +36,9 @@ export const appConfig: ApplicationConfig = {
     DatePipe,
     provideExperimentalZonelessChangeDetection(),
     provideHttpClient(withFetch()),
-    provideRouter(rootRoute),
     provideClientHydration(),
     provideAnimations(),
-    provideRouter(rootRoute),
+    provideRouter(rootRoute, withComponentInputBinding()),
     provideClientHydration(withEventReplay(), withIncrementalHydration()),
   ],
 };
